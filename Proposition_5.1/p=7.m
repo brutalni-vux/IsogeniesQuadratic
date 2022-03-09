@@ -27,7 +27,7 @@ G7Ns:=sub<GL(2,Z7) | {[1,0,0,r], [r,0,0,1], [0,1,1,0]}>;
 
 Im_rho := G7Ns;
 
-//subgroups of GL(2, Z49) reducing to Ns(7) modulo 7, up to conjugation
+//subgroups H of GL(2, Z49) reducing to Ns(7) modulo 7, up to conjugation
 Imm7Ns := [H`subgroup: H in Subgroups(GL(2,Z49)) | IsConjugate(GL(2,Z7),sub<GL(2,Z7) | {GL(2,Z7)!m : m in Generators(H`subgroup)}>,Im_rho)];
 
 //This will count scalars == 1 mod 7
