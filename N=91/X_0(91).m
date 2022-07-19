@@ -154,3 +154,41 @@ primes := [3, 5, 11, 17, 19, 23, 29, 31, 37, 41];
 "Succeeded in proving that we have all exceptional quadratic pts? (true /false)";
 MWSieve(deg2, primes, X091, A, divs, auts, genusC, deg2pb, deg2npb, I, bp);
 "";
+
+
+//we can explicitly determine the quadratic points arising as pullbacks from rationals on X0(91)+
+hyppts := Points(CSimp : Bound := 10);
+
+//it is known that X0(91)+ has 10 rational points
+assert #hyppts eq 10;
+
+Cpts := [hyppts[i]@@mpSimp : i in [1..#hyppts]];
+assert #Cpts eq 10;
+
+"The discriminants of quadratic fields over which quadratic pullbacks are defined are, in order:";
+
+for i in [1..#Cpts] do
+	CurrDiv := Pullback(projC, Place(Cpts[i]));
+	CurrDeg := 2 / #Decomposition(Pullback(projC, Place(Cpts[i])));
+	K := ResidueClassField(Decomposition(Pullback(projC, Place(Cpts[i])))[1][1]);
+	discK := SquareFreeFactorization(Discriminant(Integers(K)));
+	discK;
+end for;
+
+"Hence, 8 of them are quadratic pairs of conjugates and 2 are rationals";
+
+//these are all the quadratic points on X0(91) arising as pullbacks of rationals on X0(91)+
+//up to galois conjugates
+
+_<x>:=PolynomialRing(Rationals());
+K3<rt3> := QuadraticField(-3);
+P1 := X091(K3)![1/rt3, 0, -1/rt3, -1/rt3, 0, 1, 1];
+P2 := X091(K3)![1/rt3, 0, -1/rt3, 0, -1/rt3, 0, 1];
+P3 := X091(K3)![1/rt3, 0, -1/rt3, -2/rt3, -1/rt3, 0, 1];
+P4 := X091(K3)![2/rt3, -1/rt3, -1/rt3, -1/rt3, -1/rt3, 1, 0];
+P5 := X091(K3)![1/(3*rt3), -1/(2*rt3), -5/(6*rt3), -1/(2*rt3), 1/(6*rt3), 3/2, 1];
+P6 := X091(K3)![7/(3*rt3), -2/rt3, -7/(3*rt3), -5/(3*rt3), -4/(3*rt3), 3, 1];
+
+K87<rt87> := QuadraticField(-87);
+P7 := X091(K87)![31/(2*rt87), 3/(rt87), -2/(rt87), -4/(rt87), -8/(rt87), 3/2, 1];
+P8 := X091(K87)![14/(rt87), 12/(rt87), 7/(rt87), 3/(rt87), 1/(rt87), 3, 1];
