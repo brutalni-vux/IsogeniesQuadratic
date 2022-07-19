@@ -156,6 +156,11 @@ MWSieve(deg2, primes, X091, A, divs, auts, genusC, deg2pb, deg2npb, I, bp);
 "";
 
 
+//////////////////////////
+//////////////////////////
+//////////////////////////
+
+
 //we can explicitly determine the quadratic points arising as pullbacks from rationals on X0(91)+
 hyppts := Points(CSimp : Bound := 10);
 
